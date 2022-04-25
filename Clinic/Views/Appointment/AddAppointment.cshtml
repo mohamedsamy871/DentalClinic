@@ -1,0 +1,42 @@
+﻿@model DataAccess.Models.ClinicSchedule
+<style>
+    .form-section {
+        background-color: #0156A1;
+        color: #777;
+        border-radius: 20px;
+        padding: 20px
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col ">
+            <div class="img-container">
+                <img src="~/imgs/manwithmobile.png" class="img-fluid" />
+            </div>
+        </div>
+        <div class="col form-section align-self-center">
+            <form method="post" asp-controller="Appointment" asp-action="AddAppointment">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Day" asp-for="Day">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Month" asp-for="Month">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Year" asp-for="Year">
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="PatientId" value="@ViewBag.PatientId"/>
+                </div>
+                <button type="submit" class="btn btn-light">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>

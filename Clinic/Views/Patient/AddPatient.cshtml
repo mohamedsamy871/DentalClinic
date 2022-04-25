@@ -1,0 +1,20 @@
+﻿@model DataAccess.Models.PatientInfo
+<form method="post" asp-controller="Patient" asp-action="AddPatient">
+    <div class="form-group">
+        <label for="Fname">Name</label>
+        <input type="text" class="form-control" id="Fname" placeholder="Enter Your Name" asp-for="Name">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" class="form-control" id="phone" placeholder="Enter Your Phone" asp-for="Phone">
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" placeholder="Enter Your Age" asp-for="Age">
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <textarea class="form-control" id="address" rows="3" asp-for="Address"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

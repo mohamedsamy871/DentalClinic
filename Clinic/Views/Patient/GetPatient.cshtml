@@ -1,0 +1,29 @@
+﻿@model DataAccess.Models.PatientInfo
+<div class="container">
+    <div class="row">
+        <div class="col align-self-center">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Name</td>
+                        <td>@Model.Phone</td>
+                        <td>@Model.Age</td>
+                        <td>@Model.Address</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <img src="~/imgs/doctor.png" class="img-fluid"/>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Patient" class="btn btn-info"> Go Back</a>
+</div>  
