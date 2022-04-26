@@ -19,13 +19,5 @@ namespace DataAccess.Data
         public DbSet<VisitInfo> Visits { get; set; }
         public DbSet<ClinicSchedule> ClinicSchedules { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
-        public DbSet<PatientBill> PatientBills { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<VisitInfo>()
-                        .HasOne(s => s.Bill)
-                        .WithOne(ad => ad.Visit);
-        }
     }
 }

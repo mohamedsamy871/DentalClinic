@@ -44,14 +44,21 @@
                     <a class="btn btn-danger" asp-action="DeletePatient" asp-controller="Patient" asp-route-id="@item.Id">
                         <i class="fa fa-trash"></i>
                     </a>
-                    <a class="btn btn-warning" asp-action="AddVisit" asp-controller="Visit" asp-route-id="@item.Id"
-                       data-toggle="tooltip" data-placement="top" title="Add Visit">
-                        <i class="fa fa-plus"></i>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Visit" asp-route-PatientId="@item.Id"
+                       data-toggle="tooltip" data-placement="top" title="Show Visit Details">
+                        <i class="fa fa-eye"></i>
                     </a>
                     @if (item.ClinicSchedules.Count == 0)
                     {
                         <a class="btn btn-info" asp-action="AddAppointment" asp-controller="Appointment" asp-route-id="@item.Id"
                            data-toggle="tooltip" data-placement="top" title="Add Appointment">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-warning" asp-action="AddVisit" asp-controller="Visit" asp-route-PatientId="@item.Id"
+                           data-toggle="tooltip" data-placement="top" title="Add Visit">
                             <i class="fa fa-plus"></i>
                         </a>
                     }

@@ -1,0 +1,140 @@
+﻿@model DataAccess.Models.VisitInfo
+<style>
+    .table-container {
+        border-radius: 10px;
+        margin: 15px;
+        padding: 15px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+</style>
+    <div class="container">
+        <div class="row">
+            <div class="col table-container">
+                <table class="table table-hover" >
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">VisitType</th>
+                            <th scope="col">VisitAmout</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @ViewBag.PatientName
+                            </td>
+                            <td>
+                                @Model.Type
+                            </td>
+                            <td>
+                                @Model.VisitAmout
+                            </td>
+                            <td>
+                                @Model.Date
+                            </td>
+                            <td>
+                                @Model.Time
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col table-container">
+                <table class="table table-hover" >
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Diagnosis</th>
+                            <th scope="col">Prescription</th>
+                            <th scope="col">Lab / Rad Test</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DoctorAssessments)
+                        {
+                            <tr>
+                                <td scope="row">
+                                    @item.Diagnosis
+                                </td>
+                                <td scope="row">
+                                    @item.Prescription
+                                </td>
+                                <td scope="row">
+                                    @item.LabTest
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Add Record
+                                    </button>
+                                </td>
+                            </tr>
+                            <form class="collapse" id="collapseExample" method="post" asp-controller="Visit" 
+                                  asp-action="AddVisit">
+                                <tr >
+                                    <td>
+                                        <input type="text" name="Diagnosis" placeholder="Diagnosis">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Prescription" placeholder="Prescription">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="LabTest" placeholder="LabTest">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    </td>
+                                </tr>
+                            </form>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Appointment</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col table-container">
+                <table class="table table-hover" >
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Appointment</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
