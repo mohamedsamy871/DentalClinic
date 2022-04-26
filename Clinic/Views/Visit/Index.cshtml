@@ -7,134 +7,208 @@
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 </style>
-    <div class="container">
-        <div class="row">
-            <div class="col table-container">
-                <table class="table table-hover" >
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">VisitType</th>
-                            <th scope="col">VisitAmout</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                @ViewBag.PatientName
-                            </td>
-                            <td>
-                                @Model.Type
-                            </td>
-                            <td>
-                                @Model.VisitAmout
-                            </td>
-                            <td>
-                                @Model.Date
-                            </td>
-                            <td>
-                                @Model.Time
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="col table-container">
-                <table class="table table-hover" >
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Diagnosis</th>
-                            <th scope="col">Prescription</th>
-                            <th scope="col">Lab / Rad Test</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.DoctorAssessments)
-                        {
-                            <tr>
-                                <td scope="row">
-                                    @item.Diagnosis
-                                </td>
-                                <td scope="row">
-                                    @item.Prescription
-                                </td>
-                                <td scope="row">
-                                    @item.LabTest
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        Add Record
-                                    </button>
-                                </td>
-                            </tr>
-                            <form class="collapse" id="collapseExample" method="post" asp-controller="Visit" 
-                                  asp-action="AddVisit">
-                                <tr >
-                                    <td>
-                                        <input type="text" name="Diagnosis" placeholder="Diagnosis">
-                                    </td>
-                                    <td>
-                                        <input type="text" name="Prescription" placeholder="Prescription">
-                                    </td>
-                                    <td>
-                                        <input type="text" name="LabTest" placeholder="LabTest">
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary" type="submit">Save</button>
-                                    </td>
-                                </tr>
-                            </form>
-                        }
+<div class="container">
+    <div class="row">
+        <div class="col table-container">
+            <h6>Visit Information</h6>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">VisitType</th>
+                        <th scope="col">VisitAmout</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Visit Recipt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @ViewBag.PatientName
+                        </td>
+                        <td>
+                            @Model.Type
+                        </td>
+                        <td>
+                            @Model.VisitAmout
+                        </td>
+                        <td>
+                            @Model.Date<br />
+                            @Model.Time
+                        </td>
+                        <td>
+                            <a class="btn btn-primary text-light"
+                               data-toggle="modal" data-target="#receipt">
+                                Print
+                            </a>
+                            <div class="modal fade" id="receipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" >
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Visit Receipt</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="DivIdToPrint">
+                                            <h6>Visit Date: <span style="font-weight:100">@Model.Date</span></h6>
+                                            <h6>Patient Name: <span style="font-weight:100">@ViewBag.PatientName</span></h6>
+                                            <h6>Visit Type: <span style="font-weight:100"> @Model.Type</span></h6>
+                                            <h6>Visit Fees: <span style="font-weight:100">@Model.VisitAmout</span></h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-primary" onclick='printDiv();'>Print</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-        <div class="row">
-            <div class="col table-container">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Appointment</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="col table-container">
+            <h6>
+                Doctor Assessment
+            </h6>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Diagnosis</th>
+                        <th scope="col">Prescription</th>
+                        <th scope="col">Lab / Rad Test</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <form method="post" asp-controller="DoctorAssessment"
+                              asp-action="AddAssessment" asp-route-PatientId="@Model.PatientId">
+                        <td class="form-group">
+                            <input type="text" name="Diagnosis" placeholder="Diagnosis" class="form-control">
+                        </td>
+                        <td class="form-group">
+                            <input type="text" name="Prescription" placeholder="Prescription" class="form-control">
+                        </td>
+                        <td class="form-group">
+                            <input type="text" name="LabTest" placeholder="LabTest" class="form-control">
+                        </td>
+                        <td class="form-group">
+                            <input type="hidden" name="VisitId" value="@Model.Id" />
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </td>
+                        </form>
+                    </tr>
+
+                    @foreach (var item in Model.DoctorAssessments)
+                    {
                         <tr>
                             <td scope="row">
+                                @item.Diagnosis
                             </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col table-container">
-                <table class="table table-hover" >
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Appointment</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
                             <td scope="row">
+                                @item.Prescription
                             </td>
-
+                            <td scope="row">
+                                @item.LabTest
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="#">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
+
+                    }
+
+                </tbody>
+            </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col table-container">
+            <h6>All Clinic Procedures</h6>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <form method="post" asp-action="" asp-controller="">
+                            <td>
+                                <input class="form-control"/>
+                            </td>
+                            <td>
+                                <input class="form-control"/>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Add Custom Procedure</button>
+                            </td>
+                        </form>
+                    </tr>
+                    @foreach (var item in ViewBag.AllProcedures)
+                    {
+                    <tr>
+                        <td scope="row">
+                            @item.Name
+                        </td>
+                        <td scope="row">
+                            @item.Amount
+                        </td>
+                        <td>
+                            <form method="post" asp-controller="Procedure"
+                                  asp-action="AddVisitProcedure" asp-route-VisitId="@Model.Id">
+                                <input type="hidden" name="Name" value="@item.Name" />
+                                <input type="hidden" name="Amount" value="@item.Amount" />
+                                <button class="btn btn-primary" type="submit">
+                                    Add To Visit
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col table-container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Appointment</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        function printDiv() {
+            var divToPrint = document.getElementById('DivIdToPrint');
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print()" style="font-size:2rem;text-align:center;padding-top:20%">' + divToPrint.innerHTML + '</body></html>');
+            newWin.document.close();
+            setTimeout(function () { newWin.close(); }, 10);
+        }
+    </script>
+}

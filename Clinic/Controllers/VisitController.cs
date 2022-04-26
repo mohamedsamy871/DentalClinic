@@ -21,9 +21,11 @@ namespace Clinic.Controllers
         }
         public IActionResult Index(int PatientId)
         {
+            ViewBag.AllProcedures = _db.AllProcedures.ToList();
             var _patient = _db.Patients.Find(PatientId);
             ViewBag.PatientName = _patient.Name;
-            var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId).Include(m=>m.DoctorAssessments).FirstOrDefault();
+            var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId).Include(m=>m.DoctorAssessments)
+                                    .Include(m=>m.Procedures).FirstOrDefault();
             return View(_patientVisits);
         }
         public IActionResult AddVisit(int PatientId)
@@ -38,9 +40,8 @@ namespace Clinic.Controllers
             visitInfo.Id = 0;
             visitInfo.Date = DateTime.Now.ToString("d");
             visitInfo.Time = DateTime.Now.ToString("t");
-            //_visit.Entity.Add(visitInfo);
-            _db.Visits.Add(visitInfo);
-            _db.SaveChanges();
+            _visit.Entity.Add(visitInfo);
+            _visit.Save();
             return RedirectToAction("Index",new { PatientId = visitInfo.PatientId});
         }
     }

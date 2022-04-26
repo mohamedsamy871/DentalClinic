@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    public class Procedure
+    public class AllProcedures
     {
         public int Id { get; set; }
         public string Name { get; set; }

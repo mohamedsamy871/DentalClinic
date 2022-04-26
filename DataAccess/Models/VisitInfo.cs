@@ -16,7 +16,7 @@ namespace DataAccess.Models
         public string Time { get; set; }
         public int VisitAmout { get; set; }
         public int TotalBillAmout { get; set; }
-        public ICollection<Procedure> Procedures { get; set; }
+        public ICollection<VisitProcedure> Procedures { get; set; }
         [EnumDataType(typeof(VisitType))]
         public VisitType Type { get; set; }
         public ICollection<DoctorAssessment> DoctorAssessments { get; set; }
@@ -37,7 +37,7 @@ namespace DataAccess.Models
         public VisitInfo()
         {
             DoctorAssessments = new Collection<DoctorAssessment>();
-            Procedures = new Collection<Procedure>();
+            Procedures = new Collection<VisitProcedure>();
         }
     }
      

@@ -23,7 +23,7 @@ namespace Clinic.Controllers
         }
         public IActionResult Index()
         {
-            var _clinicSchedule = _db.Patients.Include(m => m.ClinicSchedules).ToList();
+            var _clinicSchedule = _db.Patients.Include(m => m.ClinicSchedules).Include(m=>m.Visits).ToList();
             return View(_clinicSchedule);
         }
 

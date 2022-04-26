@@ -14,10 +14,10 @@ namespace DataAccess.Data
         public MyAppContext(DbContextOptions options ):base(options){
             
         }
-
         public DbSet<PatientInfo> Patients { get; set; }
         public DbSet<VisitInfo> Visits { get; set; }
         public DbSet<ClinicSchedule> ClinicSchedules { get; set; }
-        public DbSet<Procedure> Procedures { get; set; }
+        public DbSet<VisitProcedure> VisitProcedures { get; set; }
+        public DbSet<AllProcedures> AllProcedures { get; set; }
     }
 }
