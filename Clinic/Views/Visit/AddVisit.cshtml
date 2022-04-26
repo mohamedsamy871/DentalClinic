@@ -1,0 +1,38 @@
+﻿@model DataAccess.Models.VisitInfo
+<style>
+    .form-section {
+        background-color: #0156A1;
+        color: #777;
+        border-radius: 20px;
+        padding: 20px
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col ">
+            <div class="img-container">
+                <img src="~/imgs/manwithmobile.png" class="img-fluid" />
+            </div>
+        </div>
+        <div class="col form-section align-self-center">
+            <form method="post" asp-controller="Visit" asp-action="AddVisit">
+                <div class="row">
+
+                    <div class="col">
+                        <select asp-for="Type">
+                            <option value="">Examination</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="" >
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="PatientInfo.Id" value="@ViewBag.PatientId" />
+                </div>
+                <button type="submit" class="btn btn-light">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>
