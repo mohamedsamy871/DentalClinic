@@ -5,7 +5,7 @@
 <h6>
     Clinic Schedule
 </h6>
-<table class="table table-hover" id="admintable">
+<table class="table table-hover" id="schedule-table">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -35,7 +35,7 @@
                     {
                         @foreach (var subitem in item.ClinicSchedules)
                         {
-                            <p>  @subitem.Day /  @subitem.Month /   @subitem.Year</p>
+                            <p>  @subitem.Day/@subitem.Month/@subitem.Year</p>
                         }
                     }
                     else
@@ -67,7 +67,7 @@
 <h6>
     Visits
 </h6>
-<table class="table table-hover" >
+<table class="table table-hover" id="visit-table">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -97,7 +97,7 @@
                     <td scope="row">
                         @if (item.Visits.Count > 0)
                         {
-                            <p class="text-success" style="font-weight:500">
+                            <p>
                                 @subitem.Date
                             </p>
                         }

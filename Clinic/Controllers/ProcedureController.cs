@@ -1,4 +1,5 @@
-﻿using Clinic.Interfaces;
+﻿using Clinic.Helpers.VisitHelper;
+using Clinic.Interfaces;
 using DataAccess.Data;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,16 +15,16 @@ namespace Clinic.Controllers
 
         private readonly IUnitOfWork<VisitProcedure> _visitProcedures;
         private readonly IUnitOfWork<AllProcedures> _allProcedures;
-        private readonly MyAppContext _db;
+        private readonly IVisit _visitHelper;
 
         public ProcedureController(IUnitOfWork<VisitProcedure> visitProcedures,
-            IUnitOfWork<AllProcedures> allProcedures,MyAppContext db)
+            IUnitOfWork<AllProcedures> allProcedures,IVisit visitHelper)
         {
             _visitProcedures = visitProcedures;
             _allProcedures = allProcedures;
-            _db = db;
+            _visitHelper = visitHelper;
         }
-
+        //to Add a clinic procedure to a known visit
         [HttpPost]
         public IActionResult AddVisitProcedure(AllProcedures procedureModel,int VisitId)
         {
@@ -35,11 +36,11 @@ namespace Clinic.Controllers
             _visitProcedures.Save();
 
             //update bill after adding the procedure
-            UpdateVisitBill(procedureModel.Amount, VisitId);
+            _visitHelper.UpdateVisitBill(procedureModel.Amount, VisitId);
 
             return RedirectToAction("Index","Visit",new { VisitId = VisitId });
         }
-
+        //to fill the clinic procedure table
         [HttpPost]
         public IActionResult AddProcedure(AllProcedures procedureModel, int PatientId)
         {
@@ -48,11 +49,5 @@ namespace Clinic.Controllers
             return RedirectToAction("Index", "Visit", new { PatientId = PatientId });
         }
 
-        public void UpdateVisitBill(int _amount, int VisitId)
-        {
-            var _visit = _db.Visits.Find(VisitId);
-            _visit.TotalBillAmout = _visit.TotalBillAmout + _amount;
-            _db.SaveChanges();
-        }
     }
 }

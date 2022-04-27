@@ -1,3 +1,4 @@
+using Clinic.Helpers.VisitHelper;
 using Clinic.Interfaces;
 using DataAccess.Data;
 using DataAccess.Repository;
@@ -32,6 +33,7 @@ namespace Clinic
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddScoped(typeof(IVisit), typeof(VisitHelper));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

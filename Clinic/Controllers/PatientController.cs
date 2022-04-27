@@ -37,6 +37,7 @@ namespace Clinic.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddPatient(PatientInfo patient)
         {

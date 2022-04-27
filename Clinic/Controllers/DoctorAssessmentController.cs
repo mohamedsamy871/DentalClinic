@@ -12,11 +12,9 @@ namespace Clinic.Controllers
     public class DoctorAssessmentController : Controller
     {
         private readonly IUnitOfWork<DoctorAssessment> _assessment;
-        private readonly MyAppContext _db;
-        public DoctorAssessmentController(IUnitOfWork<DoctorAssessment> assessment, MyAppContext db)
+        public DoctorAssessmentController(IUnitOfWork<DoctorAssessment> assessment)
         {
             _assessment = assessment;
-            _db = db;
         }
 
         [HttpPost]

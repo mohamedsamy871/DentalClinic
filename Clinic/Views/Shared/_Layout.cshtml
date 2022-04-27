@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Clinic</title>
+    <title>Dental Clinic</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
@@ -12,7 +12,6 @@
         table.dataTable thead .sorting_asc {
             background-image: none !important;
         }
-
         table.dataTable thead .sorting_desc {
             background-image: none !important;
         }
@@ -28,11 +27,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @*<ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Patient" asp-action="Index">Clinic Schedule</a>
-                        </li>
-                    </ul>*@
                 </div>
             </div>
         </nav>
@@ -55,7 +49,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         $(document).ready(function () {
-            $('#admintable').DataTable();
+            $('#schedule-table').DataTable();
+            $('#visit-table').DataTable();
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
