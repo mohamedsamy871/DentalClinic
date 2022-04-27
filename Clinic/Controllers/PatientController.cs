@@ -12,7 +12,6 @@ namespace Clinic.Controllers
 {
     public class PatientController : Controller
     {
-
         private readonly IUnitOfWork<PatientInfo> _patient;
         private readonly MyAppContext _db;
 
@@ -42,13 +41,6 @@ namespace Clinic.Controllers
         public IActionResult AddPatient(PatientInfo patient)
         {
             _patient.Entity.Add(patient);
-            _patient.Save();
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult DeletePatient(int id)
-        {
-            _patient.Entity.Delete(id);
             _patient.Save();
             return RedirectToAction("Index");
         }
