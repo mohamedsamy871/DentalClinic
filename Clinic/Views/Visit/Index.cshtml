@@ -260,7 +260,7 @@
                             @Model.TotalBillAmout
                         </td>
                         <td scope="row">
-                            <a class="btn btn-primary"
+                            <a class="btn btn-primary text-light"
                                data-toggle="modal" data-target="#total-bill">
                                 Print
                             </a>
@@ -273,13 +273,20 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <!----------------------------------------------------------------------------------------->
-                                            ...
+                                        <div class="modal-body" id="print-final-bill">
+                                            <h6>Visit Date: <span style="font-weight:100">@Model.Date</span></h6>
+                                            <h6>Patient Name: <span style="font-weight:100"> @ViewBag.PatientName</span></h6>
+                                            <h6>Visit Fees: <span style="font-weight:100">@Model.VisitAmout</span></h6>
+                                            @foreach (var item in Model.Procedures)
+                                            {
+                                                <h6>@item.Name: <span style="font-weight:100">@item.Amount</span></h6>
+                                            }
+                                            <hr />
+                                            <h6>Total: <span style="font-weight:100"> @Model.TotalBillAmout</span></h6>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Print</button>
+                                            <button class="btn btn-primary" onclick='printSecondDiv();'>Print</button>
                                         </div>
                                     </div>
                                 </div>
@@ -298,6 +305,14 @@
     <script>
         function printDiv() {
             var divToPrint = document.getElementById('DivIdToPrint');
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print()" style="font-size:2rem;text-align:center;padding-top:20%">' + divToPrint.innerHTML + '</body></html>');
+            newWin.document.close();
+            setTimeout(function () { newWin.close(); }, 10);
+        }
+        function printSecondDiv() {
+            var divToPrint = document.getElementById('print-final-bill');
             var newWin = window.open('', 'Print-Window');
             newWin.document.open();
             newWin.document.write('<html><body onload="window.print()" style="font-size:2rem;text-align:center;padding-top:20%">' + divToPrint.innerHTML + '</body></html>');

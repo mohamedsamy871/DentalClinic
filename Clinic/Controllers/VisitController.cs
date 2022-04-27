@@ -55,9 +55,11 @@ namespace Clinic.Controllers
             visitInfo.Id = 0;
             visitInfo.Date = DateTime.Now.ToString("d");
             visitInfo.Time = DateTime.Now.ToString("t");
+            visitInfo.TotalBillAmout = visitInfo.TotalBillAmout + visitInfo.VisitAmout;
             _visit.Entity.Add(visitInfo);
             _visit.Save();
             return RedirectToAction("Index",new { PatientId = visitInfo.PatientId});
         }
+       
     }
 }

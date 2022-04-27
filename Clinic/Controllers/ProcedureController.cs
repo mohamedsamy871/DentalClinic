@@ -33,10 +33,10 @@ namespace Clinic.Controllers
             _visitProcedure.VisitId = VisitId;
             _visitProcedures.Entity.Add(_visitProcedure);
             _visitProcedures.Save();
+
             //update bill after adding the procedure
-            var _visit = _db.Visits.Find(VisitId);
-            _visit.TotalBillAmout = _visit.TotalBillAmout + procedureModel.Amount;
-            _db.SaveChanges();
+            UpdateVisitBill(procedureModel.Amount, VisitId);
+
             return RedirectToAction("Index","Visit",new { VisitId = VisitId });
         }
 
@@ -46,6 +46,13 @@ namespace Clinic.Controllers
             _allProcedures.Entity.Add(procedureModel);
             _allProcedures.Save();
             return RedirectToAction("Index", "Visit", new { PatientId = PatientId });
+        }
+
+        public void UpdateVisitBill(int _amount, int VisitId)
+        {
+            var _visit = _db.Visits.Find(VisitId);
+            _visit.TotalBillAmout = _visit.TotalBillAmout + _amount;
+            _db.SaveChanges();
         }
     }
 }
