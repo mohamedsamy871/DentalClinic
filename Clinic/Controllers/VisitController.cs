@@ -21,14 +21,27 @@ namespace Clinic.Controllers
         }
         public IActionResult Index(int? PatientId,int? VisitId)
         {
-            ViewBag.AllProcedures = _db.AllProcedures.ToList();
-            var _patient = _db.Patients.Find(PatientId);
-            ViewBag.PatientName = _patient.Name;
-            ViewBag.PatientId = PatientId;
-            var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId||m.Id==VisitId).Include(m=>m.DoctorAssessments)
-                                    .Include(m=>m.Procedures).FirstOrDefault();
+            if (VisitId > 0)
+            {
+                ViewBag.AllProcedures = _db.AllProcedures.ToList();
+                var _PatientVisits = _db.Visits.Where(m => m.Id == VisitId).Include(m => m.DoctorAssessments)
+                                        .Include(m => m.Procedures).FirstOrDefault();
+                ViewBag.PatientId = _PatientVisits.PatientId;
+                var _patient = _db.Patients.Find(_PatientVisits.PatientId);
+                ViewBag.PatientName = _patient.Name;
+                return View(_PatientVisits);
+            }
+            else
+            {
+                ViewBag.AllProcedures = _db.AllProcedures.ToList();
+                var _patient = _db.Patients.Find(PatientId);
+                ViewBag.PatientName = _patient.Name;
+                ViewBag.PatientId = PatientId;
+                var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId).Include(m => m.DoctorAssessments)
+                                        .Include(m => m.Procedures).FirstOrDefault();
+                return View(_patientVisits);
+            }
             
-            return View(_patientVisits);
         }
         public IActionResult AddVisit(int PatientId)
         {

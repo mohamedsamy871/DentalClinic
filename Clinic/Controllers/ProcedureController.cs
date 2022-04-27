@@ -14,16 +14,18 @@ namespace Clinic.Controllers
 
         private readonly IUnitOfWork<VisitProcedure> _visitProcedures;
         private readonly IUnitOfWork<AllProcedures> _allProcedures;
+        private readonly MyAppContext _db;
 
         public ProcedureController(IUnitOfWork<VisitProcedure> visitProcedures,
-            IUnitOfWork<AllProcedures> allProcedures)
+            IUnitOfWork<AllProcedures> allProcedures,MyAppContext db)
         {
             _visitProcedures = visitProcedures;
             _allProcedures = allProcedures;
+            _db = db;
         }
 
         [HttpPost]
-        public IActionResult AddVisitProcedure(AllProcedures procedureModel,int VisitId, int PatientId)
+        public IActionResult AddVisitProcedure(AllProcedures procedureModel,int VisitId)
         {
             var _visitProcedure = new VisitProcedure();
             _visitProcedure.Name = procedureModel.Name;
@@ -31,7 +33,11 @@ namespace Clinic.Controllers
             _visitProcedure.VisitId = VisitId;
             _visitProcedures.Entity.Add(_visitProcedure);
             _visitProcedures.Save();
-            return RedirectToAction("Index","Visit",new { PatientId = PatientId });
+            //update bill after adding the procedure
+            var _visit = _db.Visits.Find(VisitId);
+            _visit.TotalBillAmout = _visit.TotalBillAmout + procedureModel.Amount;
+            _db.SaveChanges();
+            return RedirectToAction("Index","Visit",new { VisitId = VisitId });
         }
 
         [HttpPost]

@@ -20,11 +20,11 @@ namespace Clinic.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAssessment(DoctorAssessment doctorAssessment, int PatientId)
+        public IActionResult AddAssessment(DoctorAssessment doctorAssessment)
         {
             _assessment.Entity.Add(doctorAssessment);
             _assessment.Save();
-            return RedirectToAction("Index","Visit",new { PatientId = PatientId });
+            return RedirectToAction("Index","Visit",new { VisitId = doctorAssessment.VisitId });
         }
     }
 }

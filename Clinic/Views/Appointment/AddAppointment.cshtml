@@ -32,9 +32,10 @@
                             <input type="text" class="form-control" placeholder="Year" asp-for="Year">
                         </div>
                     </div>
-                    <input type="hidden" asp-for="PatientId" value="@ViewBag.PatientId"/>
+                    <input type="hidden" asp-for="PatientId" value="@ViewBag.PatientId" />
                 </div>
                 <button type="submit" class="btn btn-light">Submit</button>
+                <a class="btn btn-light" asp-controller="Patient" asp-action="Index">Cancel</a>
             </form>
         </div>
 
