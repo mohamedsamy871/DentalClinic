@@ -8,26 +8,99 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    background-color: #3498db;
+    border-color: #3498db;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
 }
-
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+    .btn-warning {
+        background-color: #f1c40f;
+        border-color: #f1c40f;
+        border-radius: 0;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+.btn-info {
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+.btn-success {
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+.btn-light {
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-right:8px
+}
+.btn-secondary {
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+a:hover{
+    text-decoration:none!important;
+}
+th,td, h6 {
+    color: #485460!important;
+    font-size:0.8rem
+}
+    th{
+        font-weight:500!important
+    }
+    .form-section {
+        background-color: #ebebeb !important
+    }
+    input, textarea {
+        border-radius: 0 !important;
+        resize: none;
+        border: 1px solid #ecf0f1 !important;
+    }
+    .form-title {
+        color: #7f8c8d;
+        margin-bottom: 30px
+    }
+    input::placeholder, textarea::placeholder {
+        color: #95a5a6 !important;
+        font-size: 0.7rem !important;
+    }
+label{
+    display:none
+}
+.paginate_button.current {
+    background: #d2dae2!important;
+    color: #fff !important;
+    border:none!important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+}
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
-
+#schedule-table_info,
+#visit-table_info {
+    font-size: 0.8rem !important;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -59,8 +132,8 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;

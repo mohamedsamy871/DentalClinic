@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<DataAccess.Models.PatientInfo>
-<a asp-action="AddPatient" asp-controller="Patient" class="btn btn-primary mb-3">
+<a asp-action="AddPatient" asp-controller="Patient" class="btn btn-primary mb-0 mt-4">
     Add Patient
 </a>
-<h6>
+<h6 class="mt-5">
     Clinic Schedule
 </h6>
 <table class="table table-hover" id="schedule-table">
@@ -64,7 +64,7 @@
     </tbody>
 </table>
 <hr />
-<h6>
+<h6 class="mt-5">
     Visits
 </h6>
 <table class="table table-hover" id="visit-table">
