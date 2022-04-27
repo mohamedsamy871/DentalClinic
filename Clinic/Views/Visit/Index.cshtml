@@ -105,6 +105,7 @@
 
                     @foreach (var item in Model.DoctorAssessments)
                     {
+                        var myid = "newId" + item.Id;
                         <tr>
                             <td scope="row">
                                 @item.Diagnosis
@@ -116,9 +117,48 @@
                                 @item.LabTest
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="#">
+                                <a class="btn btn-primary text-light"
+                                   data-toggle="modal" data-target="#@myid">
                                     <i class="fa fa-eye"></i>
                                 </a>
+                                <div class="modal fade" id="@myid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Doctor Assessment</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h6>Diagnosis</h6>
+                                                        <p>@item.Diagnosis</p>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h6>Prescription</h6>
+                                                        <p>@item.Prescription</p>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h6>Lab / Rad Test</h6>
+                                                        <p>@item.LabTest</p>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
 
@@ -141,12 +181,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <form method="post" asp-action="" asp-controller="">
+                        <form method="post" asp-action="AddProcedure" asp-controller="Procedure"
+                              asp-route-PatientId="@ViewBag.PatientId">
                             <td>
-                                <input class="form-control"/>
+                                <input type="text" class="form-control" name="Name" placeholder="Name"/>
                             </td>
                             <td>
-                                <input class="form-control"/>
+                                <input type="text" class="form-control" name="Amount" placeholder="Amount"/>
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-primary">Add Custom Procedure</button>
@@ -164,7 +205,7 @@
                         </td>
                         <td>
                             <form method="post" asp-controller="Procedure"
-                                  asp-action="AddVisitProcedure" asp-route-VisitId="@Model.Id">
+                                  asp-action="AddVisitProcedure" asp-route-VisitId="@Model.Id" asp-route-PatientId="@ViewBag.PatientId">
                                 <input type="hidden" name="Name" value="@item.Name" />
                                 <input type="hidden" name="Amount" value="@item.Amount" />
                                 <button class="btn btn-primary" type="submit">
@@ -179,26 +220,33 @@
             </table>
         </div>
         <div class="col table-container">
+            <h6>Visit Procedures</h6>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Appointment</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">
-                        </td>
-
-                    </tr>
+                    @foreach (var item in Model.Procedures)
+                    {
+                        <tr>
+                            <td scope="row">
+                                @item.Name
+                            </td>
+                            <td scope="row">
+                                @item.Amount
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
+    <a asp-action="Index" asp-controller="Patient" class="btn btn-primary mt-5 mb-5">
+        Go Back
+    </a>
 </div>
 @section Scripts{
     <script>

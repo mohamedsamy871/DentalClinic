@@ -23,10 +23,23 @@ namespace Clinic.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddVisitProcedure(AllProcedures procedureModel,int VisitId)
+        public IActionResult AddVisitProcedure(AllProcedures procedureModel,int VisitId, int PatientId)
         {
+            var _visitProcedure = new VisitProcedure();
+            _visitProcedure.Name = procedureModel.Name;
+            _visitProcedure.Amount = procedureModel.Amount;
+            _visitProcedure.VisitId = VisitId;
+            _visitProcedures.Entity.Add(_visitProcedure);
+            _visitProcedures.Save();
+            return RedirectToAction("Index","Visit",new { PatientId = PatientId });
+        }
 
-            return View();
+        [HttpPost]
+        public IActionResult AddProcedure(AllProcedures procedureModel, int PatientId)
+        {
+            _allProcedures.Entity.Add(procedureModel);
+            _allProcedures.Save();
+            return RedirectToAction("Index", "Visit", new { PatientId = PatientId });
         }
     }
 }

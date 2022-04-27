@@ -19,13 +19,15 @@ namespace Clinic.Controllers
             _visit = visit;
             _db = db;
         }
-        public IActionResult Index(int PatientId)
+        public IActionResult Index(int? PatientId,int? VisitId)
         {
             ViewBag.AllProcedures = _db.AllProcedures.ToList();
             var _patient = _db.Patients.Find(PatientId);
             ViewBag.PatientName = _patient.Name;
-            var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId).Include(m=>m.DoctorAssessments)
+            ViewBag.PatientId = PatientId;
+            var _patientVisits = _db.Visits.Where(m => m.PatientInfo.Id == PatientId||m.Id==VisitId).Include(m=>m.DoctorAssessments)
                                     .Include(m=>m.Procedures).FirstOrDefault();
+            
             return View(_patientVisits);
         }
         public IActionResult AddVisit(int PatientId)
