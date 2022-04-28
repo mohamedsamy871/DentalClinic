@@ -19,29 +19,29 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="clinic-overlay">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Patient" asp-action="Index">Dental Clinic</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="row justify-content-end align-items-center">
+                    <div class="col-lg-6">
+                        <p class="slogan">A full control between Your hands </p>
+                        <h1>
+                            Whatever a Hospital or Clinic
+                        </h1>
+                        <p>
+                            Our Apps will organize every single action
+                        </p>
+
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 -Dental Clinic 
-        </div>
-    </footer>
+    <partial name="_footer.cshtml"></partial>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/font-awesome/js/all.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,269 @@
+﻿<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    footer {
+        margin-top: auto;
+        background-color: #0d0f11;
+        padding-top: 35px;
+    }
+
+    @@media(max-width:992px) {
+        footer {
+            background-position: center
+        }
+    }
+
+    footer .col-lg-3 {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    footer .navbar-brand img {
+        width: 160px;
+    }
+
+    footer .text-container p {
+        color: #fff;
+        font-size: 0.8rem;
+        text-align: justify;
+        margin: 18px 0 20px;
+        line-height: 23px
+    }
+
+    footer a, footer p, footer div {
+        color: #fff;
+        font-size: 0.8rem;
+    }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+    footer h5 {
+        color: #fff;
+        text-transform: uppercase;
+        margin: 1.7rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    footer .contact-container {
+        padding-left: 35px
+    }
+
+    @@media(max-width:992px) {
+        footer .contact-container {
+            padding-left: 20px
+        }
+
+        footer .company-links {
+            padding-left: 20px
+        }
+    }
+
+    footer .contact-container .contact-links {
+        display: inline-block
+    }
+
+    footer .company-links {
+        padding-left: 25px
+    }
+
+        footer .company-links ul {
+            padding-left: 19px;
+            list-style-type: disc;
+            columns: 2;
+        }
+
+            footer .company-links ul li {
+                margin-right: 20px;
+                margin-bottom: 12px;
+            }
+
+    footer .subscribe-section {
+        margin-bottom: 35px;
+    }
+
+        footer .subscribe-section input {
+            border-radius: 0;
+            height: 45px;
+        }
+
+            footer .subscribe-section input::placeholder {
+                font-size: 0.9rem;
+                color: #ccc;
+                font-weight: 600
+            }
+
+        footer .subscribe-section button {
+            width: 43px;
+            border-radius: 0;
+            padding: 11px;
+            background-color: var(--secondary-color);
+        }
+
+            footer .subscribe-section button:focus {
+                box-shadow: none;
+            }
+
+            footer .subscribe-section button svg {
+                font-size: 20px;
+            }
+
+        footer .subscribe-section .icon-container {
+            margin-top: 1rem;
+        }
+
+            footer .subscribe-section .icon-container a svg {
+                background-color: var(--secondary-color);
+                border-radius: 50%;
+                padding: 8px 11px;
+                font-size: 1rem;
+                margin-right: 15px;
+            }
+
+    footer .copywright-section {
+        background-color: #0d0f11;
+        color: #fff;
+        padding: 13px 0;
+        text-align: center
+    }
+</style>
+<footer>
+    <nav class="navbar page-footer navbar-dark">
+        <div class="container">
+            <div class="row" style="width:100%">
+                <div class="col-lg-3 text-container">
+                    <h5>
+                        Logo
+                    </h5>
+                    <p class="small-paragraph">
+                        We are a home medical care company that takes care of offering
+                        patients the opportunity to seek remote health care while getting the
+                        appropriate service quickly and effectively.
+                    </p>
+                </div>
+                <div class="col-lg-3 contact-container">
+                    <h5>
+                        contact us
+                    </h5>
+                    <a class="contact-links" href="https://goo.gl/maps/TrhUFybbvXEThNKfA" target="_blank">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    Riyadh 12345, Riyadh City, P.O.Box 255412, Saudi Arabia.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="contact-links" href="mailto:info@wecare.com">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    info@digitalcare.com
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="contact-links" href="tel:+9665259973">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    (+966) 556 947 973
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 company-links">
+                    <h5>
+                        Company
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Our Story
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Patient
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Our Values
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Servies
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 subscribe-section">
+                    <h5>reach us</h5>
+                    <form asp-controller="Home" asp-action="Subscribe" method="post">
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Your E-mail" name="Email">
+                                    <button type="submit" class="input-group-prepend btn btn-primary">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="icon-container">
+                        <a href="#">
+                            <i class="fa-brands fa-facebook-f" style=" padding: 8px 11px;"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa-brands fa-twitter" style="padding: 8px 9px;"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa-brands fa-instagram" style="padding: 8px 10px;"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa-brands fa-linkedin-in" style="padding: 8px 10px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+</footer>

@@ -1,120 +1,170 @@
 ﻿@model IEnumerable<DataAccess.Models.PatientInfo>
-<a asp-action="AddPatient" asp-controller="Patient" class="btn btn-primary mb-0 mt-4">
+<style>
+    .card-container {
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in;
+        transform: scale(1);
+        background-color: #111216;
+        margin-bottom: 24px;
+        padding: 25px;
+    }
+    .card-container:hover {
+        transform: scale(1.01);
+        border: 1px solid #1890ff;
+        box-shadow: 0 5px 20px 0 rgb(24 144 255 / 22%);
+    }
+    .add-link {
+        color: #40a9ff;
+        font-weight: 500;
+        line-height: 1.75;
+        position: relative;
+        float: right;
+        margin: 20px 25px 20px 0;
+    }
+    .add-link:hover {
+        color: #40a9ff!important;
+    }
+    .add-link:after {
+        content: '';
+        width: 110%;
+        bottom: -1px;
+        left: -5%;
+        position: absolute;
+        border-bottom: 1px solid #40a9ff;
+    }
+</style>
+<a asp-action="AddPatient" asp-controller="Patient" class="add-link">
     Add Patient
 </a>
-<h6 class="mt-5">
-    Clinic Schedule
-</h6>
-<table class="table table-hover" id="schedule-table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Appointment</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td scope="row">
-                    @item.Id
-                </td>
-                <td scope="row">
-                    <a asp-controller="Patient" asp-action="GetPatient" asp-route-id="@item.Id">
-                        @item.Name
-                    </a>
-                </td>
-                <td scope="row">
-                    @item.Phone
-                </td>
-                <td scope="row">
-                    @if (item.ClinicSchedules.Count > 0)
-                    {
-                        @foreach (var subitem in item.ClinicSchedules)
+<div class="container" style="clear:both">
+    <div class="row">
+        <div class="col">
+            <div class="card-container">
+                <h6 class="mt-5">
+                    Clinic Schedule
+                </h6>
+                <table class="table table-hover" id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Appointment</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            <p>  @subitem.Day/@subitem.Month/@subitem.Year</p>
+                            <tr>
+                                <td scope="row">
+                                    @item.Id
+                                </td>
+                                <td scope="row">
+                                    <a asp-controller="Patient" asp-action="GetPatient" asp-route-id="@item.Id">
+                                        @item.Name
+                                    </a>
+                                </td>
+                                <td scope="row">
+                                    @item.Phone
+                                </td>
+                                <td scope="row">
+                                    @if (item.ClinicSchedules.Count > 0)
+                                    {
+                                        @foreach (var subitem in item.ClinicSchedules)
+                                        {
+                                            <p>  @subitem.Day/@subitem.Month/@subitem.Year</p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="text-danger">No Appointments For This Patient</p>
+                                    }
+                                </td>
+                                <td scope="row">
+                                    @if (item.ClinicSchedules.Count == 0)
+                                    {
+                                        <a class="action-button" asp-action="AddAppointment" asp-controller="Appointment" asp-route-id="@item.Id"
+                                           data-toggle="tooltip" data-placement="top" title="Add Appointment">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="action-button" asp-action="AddVisit" asp-controller="Visit" asp-route-PatientId="@item.Id"
+                                           data-toggle="tooltip" data-placement="top" title="Add Visit">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
                         }
-                    }
-                    else
-                    {
-                        <p class="text-danger">No Appointments For This Patient</p>
-                    }
-                </td>
-                <td scope="row">
-                    @if (item.ClinicSchedules.Count == 0)
-                    {
-                        <a class="btn btn-info" asp-action="AddAppointment" asp-controller="Appointment" asp-route-id="@item.Id"
-                           data-toggle="tooltip" data-placement="top" title="Add Appointment">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-warning" asp-action="AddVisit" asp-controller="Visit" asp-route-PatientId="@item.Id"
-                           data-toggle="tooltip" data-placement="top" title="Add Visit">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<hr />
-<h6 class="mt-5">
-    Visits
-</h6>
-<table class="table table-hover" id="visit-table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Visits' Dates</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            @foreach (var subitem in item.Visits)
-            {
-                <tr>
-                    <td scope="row">
-                        @item.Id
-                    </td>
-                    <td scope="row">
-                        <a asp-controller="Patient" asp-action="GetPatient" asp-route-id="@item.Id">
-                            @item.Name
-                        </a>
-                    </td>
-                    <td scope="row">
-                        @item.Phone
-                    </td>
-                    <td scope="row">
-                        @if (item.Visits.Count > 0)
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-container">
+                <h6 class="mt-5">
+                    Visits
+                </h6>
+                <table class="table table-hover" id="visit-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Visits' Dates</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            <p>
-                                @subitem.Date
-                            </p>
-                        }
-                    </td>
-                    <td scope="row">
-                        @if (item.Visits.Count > 0)
-                        {
-                            <a class="btn btn-primary" asp-action="Index" asp-controller="Visit"
-                                asp-route-VisitId="@subitem.Id"
-                               data-toggle="tooltip" data-placement="top" title="Show Visit Details">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        }
-                    </td>
-                </tr>
-            }
+                            @foreach (var subitem in item.Visits)
+                            {
+                                <tr>
+                                    <td scope="row">
+                                        @item.Id
+                                    </td>
+                                    <td scope="row">
+                                        <a asp-controller="Patient" asp-action="GetPatient" asp-route-id="@item.Id">
+                                            @item.Name
+                                        </a>
+                                    </td>
+                                    <td scope="row">
+                                        @item.Phone
+                                    </td>
+                                    <td scope="row">
+                                        @if (item.Visits.Count > 0)
+                                        {
+                                            <p>
+                                                @subitem.Date
+                                            </p>
+                                        }
+                                    </td>
+                                    <td scope="row">
+                                        @if (item.Visits.Count > 0)
+                                        {
+                                            <a class="action-button" asp-action="Index" asp-controller="Visit"
+                                               asp-route-VisitId="@subitem.Id"
+                                               data-toggle="tooltip" data-placement="top" title="Show Visit Details">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
 
-        }
-    </tbody>
-</table>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,9 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
+﻿/*#region General Settings*/
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
-
-/* Provide sufficient contrast against white background */
 
 .btn-primary {
     background-color: #3498db;
@@ -16,6 +12,7 @@ a.navbar-brand {
     font-weight: 500;
     font-size: 0.8rem;
 }
+
 .btn-danger {
     background-color: #e74c3c;
     border-color: #e74c3c;
@@ -23,122 +20,170 @@ a.navbar-brand {
     font-weight: 500;
     font-size: 0.8rem;
 }
-    .btn-warning {
-        background-color: #f1c40f;
-        border-color: #f1c40f;
-        border-radius: 0;
-        font-weight: 500;
-        font-size: 0.8rem;
-    }
+
+.btn-warning {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
 .btn-info {
     border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
 }
+
 .btn-success {
     border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
 }
+
 .btn-light {
     border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
     color: #7f8c8d;
-    margin-right:8px
+    margin-right: 8px
 }
+
 .btn-secondary {
     border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
 }
-a:hover{
-    text-decoration:none!important;
+
+a:hover {
+    text-decoration: none !important;
 }
-th,td, h6 {
-    color: #485460!important;
-    font-size:0.8rem
+
+th, td, h6 {
+    color: #9b9b9b !important;
+    font-size: 0.8rem
 }
-    th{
-        font-weight:500!important
-    }
-    .form-section {
-        background-color: #ebebeb !important
-    }
-    input, textarea {
-        border-radius: 0 !important;
-        resize: none;
-        border: 1px solid #ecf0f1 !important;
-    }
-    .form-title {
-        color: #7f8c8d;
-        margin-bottom: 30px
-    }
-    input::placeholder, textarea::placeholder {
-        color: #95a5a6 !important;
-        font-size: 0.7rem !important;
-    }
-label{
-    display:none
+
+th {
+    font-weight: 500 !important
 }
-.paginate_button.current {
-    background: #d2dae2!important;
-    color: #fff !important;
-    border:none!important;
-    padding: 0 !important;
-    border-radius: 50% !important;
+
+.form-section {
+    background-color: #ebebeb !important
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+
+input, textarea {
+    border-radius: 0 !important;
+    resize: none;
+    border: 1px solid #ecf0f1 !important;
 }
-#schedule-table_info,
-#visit-table_info {
-    font-size: 0.8rem !important;
+
+.form-title {
+    color: #7f8c8d;
+    margin-bottom: 30px
 }
-/* Sticky footer styles
--------------------------------------------------- */
+
+input::placeholder, textarea::placeholder {
+    color: #95a5a6 !important;
+    font-size: 0.7rem !important;
+}
+
+label {
+    display: none
+}
 html {
-    font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    background-color: rgb(25, 28, 32);
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+/*#endregion*/
+/*#region Header*/
+    header {
+        background-image: url(/imgs/bg4.jpg);
+        background-size: cover;
+        min-height: 600px;
+        position: relative
+    }
+
+    header .clinic-overlay {
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background-color: rgba(112,122,122,0.6);
+        background-size: cover;
+        position: absolute;
+    }
+
+    header .row {
+        min-height: 600px;
+    }
+
+    header h1, header p {
+        color: #fff;
+    }
+
+    header .slogan {
+        font-size: 0.8rem;
+        font-weight: 600
+    }
+
+    header h1 {
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 4rem
+    }
+/*#endregion*/
+/*#region data-table*/
+table.dataTable.no-footer{
+    border-bottom:none!important;
 }
+table.dataTable tbody tr {
+    background-color: transparent !important;
+}
+table.dataTable th a,
+table.dataTable th p,
+table.dataTable th {
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 0.8rem
+}
+table.dataTable tbody td a,
+table.dataTable tbody td p,
+table.dataTable tbody td {
+    color:#fff!important;
+    font-weight:500;
+    font-size:0.7rem;
+    margin-bottom:0
+}
+table.dataTable td,
+table.dataTable th {
+    vertical-align: middle;
+}
+
+#schedule-table_info,
+#visit-table_info {
+    font-size: 0.8rem !important;
+    color: #9b9b9b;
+}
+body main h6 {
+    color: #9b9b9b;
+    font-weight:600;
+    font-size:0.9rem
+}
+.paginate_button.current {
+    background: #fff !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+}
+/*#endregion*/
+/*#region Table Settings*/
+.action-button svg {
+    color: #ff4d4f;
+    font-size:0.8rem
+}
+/*endregion*/
