@@ -1,15 +1,24 @@
 ﻿@model DataAccess.Models.VisitInfo
 <style>
     .table-container {
-        border-radius: 10px;
-        margin: 15px;
-        padding: 15px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in;
+        transform: scale(1);
+        background-color: #111216;
+        margin: 24px;
+        padding: 25px;
+    }
+
+    .table-container:hover {
+        transform: scale(1.01);
+        border: 1px solid #1890ff;
+        box-shadow: 0 5px 20px 0 rgb(24 144 255 / 22%);
     }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col table-container">
+        <div class="col table-container mt-5">
             <h6>Visit Information</h6>
             <table class="table table-hover">
                 <thead>
@@ -37,9 +46,9 @@
                             @Model.Time
                         </td>
                         <td>
-                            <a class="btn btn-primary text-light"
+                            <a class="action-button"
                                data-toggle="modal" data-target="#receipt">
-                                Print
+                                <i class="fa-solid fa-print"></i>
                             </a>
                             <div class="modal fade" id="receipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog" role="document">

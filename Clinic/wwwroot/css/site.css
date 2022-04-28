@@ -186,4 +186,7 @@ body main h6 {
     color: #ff4d4f;
     font-size:0.8rem
 }
+.modal {
+    overflow: auto !important;
+}
 /*endregion*/
