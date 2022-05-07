@@ -24,25 +24,25 @@ a.navbar-brand {
 .btn-warning {
     background-color: #f1c40f;
     border-color: #f1c40f;
-    border-radius: 0;
+    border-radius: 4px;
     font-weight: 500;
     font-size: 0.8rem;
 }
 
 .btn-info {
-    border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
+    border-radius: 4px;
 }
 
 .btn-success {
-    border-radius: 0;
     font-weight: 500;
     font-size: 0.8rem;
+    border-radius: 4px;
 }
 
 .btn-light {
-    border-radius: 0;
+    border-radius: 4px;
     font-weight: 500;
     font-size: 0.8rem;
     color: #7f8c8d;
@@ -50,7 +50,7 @@ a.navbar-brand {
 }
 
 .btn-secondary {
-    border-radius: 0;
+    border-radius: 4px;
     font-weight: 500;
     font-size: 0.8rem;
 }
@@ -92,12 +92,12 @@ th {
     background-color: #ebebeb !important
 }
 
-input, textarea {
+input, textarea,select{
     border-radius: 4px !important;
     resize: none;
     border: 1px solid #ecf0f1 !important;
-    background-color: #343434!important;
-    color:#fff!important;
+    background-color: #545454 !important;
+    color: #fff !important;
 }
 
 .form-title {
