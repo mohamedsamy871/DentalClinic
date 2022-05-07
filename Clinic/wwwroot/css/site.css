@@ -8,7 +8,7 @@ a.navbar-brand {
 .btn-primary {
     background-color: #3498db;
     border-color: #3498db;
-    border-radius: 0;
+    border-radius: 4px;
     font-weight: 500;
     font-size: 0.8rem;
 }
@@ -16,7 +16,7 @@ a.navbar-brand {
 .btn-danger {
     background-color: #e74c3c;
     border-color: #e74c3c;
-    border-radius: 0;
+    border-radius: 4px;
     font-weight: 500;
     font-size: 0.8rem;
 }
@@ -54,7 +54,27 @@ a.navbar-brand {
     font-weight: 500;
     font-size: 0.8rem;
 }
+.add-link {
+    color: #40a9ff;
+    font-weight: 500;
+    line-height: 1.75;
+    position: relative;
+    float: right;
+    margin: 20px 25px 20px 0;
+}
 
+    .add-link:hover {
+        color: #40a9ff !important;
+    }
+
+    .add-link:after {
+        content: '';
+        width: 110%;
+        bottom: -1px;
+        left: -5%;
+        position: absolute;
+        border-bottom: 1px solid #40a9ff;
+    }
 a:hover {
     text-decoration: none !important;
 }
@@ -73,9 +93,11 @@ th {
 }
 
 input, textarea {
-    border-radius: 0 !important;
+    border-radius: 4px !important;
     resize: none;
     border: 1px solid #ecf0f1 !important;
+    background-color: #343434!important;
+    color:#fff!important;
 }
 
 .form-title {
@@ -186,7 +208,5 @@ body main h6 {
     color: #ff4d4f;
     font-size:0.8rem
 }
-.modal {
-    overflow: auto !important;
-}
+
 /*endregion*/
